@@ -9,14 +9,16 @@
      *   - Use GET Request Method and pass name as query parameter
      *   - Use CURL to demonstrate the REST API Call
      *   - curl localhost:8080/getHelloMessage?name=Pooja -w "\n"
+     *
+     * UC3: Make REST Call to show Hello Mark from BridgeLabz
+     *  - Use GET Request Method and pass name as path variable
+     *  - Use CURL to demonstrate the REST API Call
+     *  - curl localhost:8080/home/param/Pooja -w "\n"
  */
 package com.org.RestAPICalls.controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloRestController {
@@ -31,12 +33,22 @@ public class HelloRestController {
     }
 
     /*
-     *Once getMapping hit the server sayHello() method is called and standard message is display with name parameter
+     * Once getMapping hit the server sayHello() method is called and standard message is display with name parameter
      * @param: name
      * @return
      */
     @GetMapping(value = "/getHelloMessage")
     public String sayHello(@RequestParam(value = "name") String name) {
+        return "Hello I am " + name + " From Bridgelabz.";
+    }
+
+    /*
+     * Once getMapping hit the server sayHelloWithParam() method is called and name is given as Path veriable
+     * @param: name
+     * @return
+     */
+    @GetMapping("home/param/{name}")
+    public String sayHelloWithParam(@PathVariable String name) {
         return "Hello I am " + name + " From Bridgelabz.";
     }
 }
