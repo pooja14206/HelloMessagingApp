@@ -14,6 +14,17 @@
      *  - Use GET Request Method and pass name as path variable
      *  - Use CURL to demonstrate the REST API Call
      *  - curl localhost:8080/home/param/Pooja -w "\n"
+     *
+     * UC4: Make REST Call to show Hello I am Pooja Roy from BridgeLabz
+     *  - Use POST Request Method and pass first name and last name in the Body
+     *  - Create User DTO Bean with firstName and lastName as attributes.
+     *  - Use CURL to demonstrate the REST API Call
+     *  - curl -X POST -H "Content-Type: application/json" -d '{"firstName": ”Mark","lastName": ”Taylor"}' "http://localhost:8080/hello/post" -w "\n"
+     *
+     * UC5: Make REST Call to show Hello I am Pooja Roy from BridgeLabz
+     *  - Use PUT Request Method and pass first name as Path Variable and last name as Query Parameter
+     *  - Use CURL to demonstrate the REST API Call
+     *  - curl -X PUT localhost:8080/hello/put/Pooja/?lastName=Roy -w "\n"
  */
 package com.org.RestAPICalls.controller;
 
@@ -53,8 +64,21 @@ public class HelloRestController {
         return "Hello I am " + name + " From Bridgelabz.";
     }
 
+    /*
+    * Post Request
+    * @param: sutdent
+     */
+
     @PostMapping("/post")
     public String sayHello(@RequestBody Student student) {
         return "Hello I am " + student.getFirstName() + " " + student.getLastName() + " from Bridgelabz.";
+    }
+    /*
+     * Put Request
+     * @param: sutdent
+    */
+    @PutMapping("/put/{firstName}")
+    public String sayHello(@PathVariable String firstName, @RequestParam(value = "lastName") String lastName) {
+        return "Hello I am " + firstName + " " + lastName + " from Bridgelabz";
     }
 }
