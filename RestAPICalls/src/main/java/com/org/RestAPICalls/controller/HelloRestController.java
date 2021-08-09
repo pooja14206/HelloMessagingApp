@@ -17,6 +17,7 @@
  */
 package com.org.RestAPICalls.controller;
 
+import com.org.RestAPICalls.dto.Student;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,5 +51,10 @@ public class HelloRestController {
     @GetMapping("home/param/{name}")
     public String sayHelloWithParam(@PathVariable String name) {
         return "Hello I am " + name + " From Bridgelabz.";
+    }
+
+    @PostMapping("/post")
+    public String sayHello(@RequestBody Student student) {
+        return "Hello I am " + student.getFirstName() + " " + student.getLastName() + " from Bridgelabz.";
     }
 }
